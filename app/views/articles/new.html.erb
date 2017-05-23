@@ -1,4 +1,12 @@
 <%= form_for :article , url: articles_path do |f| %>
+	<% if @article.error.any? %>
+			<%=pluralize(@article.error.count,"error")%> prohibited
+			this article from being saved:
+		<% @article.error.full_messages.each do |msg| %>
+			<%= msg %>
+		 	<% end %>
+	<% end %>
+
 	<p>
 		<%= f.label :title %><br>
 		 <%= f.text_field :title %>		
@@ -15,4 +23,4 @@
 
 <% end %>
 
-<%= link to 'back',articles_path %>
+<%= link_to 'back',articles_path %>
